@@ -19,6 +19,6 @@ namespace APP.Domain
 
         public bool IsRetired { get; set; }
 
-        public List<Movie> Movies { get; set; } = new();
+        public List<Movie> Movies { get; set; } = new(); // navigation property
     }
 }
