@@ -1,0 +1,92 @@
+@model DirectorResponse
+
+@* Generated from Custom MVC Template. *@
+@* Model namespace using directive should be added to _ViewImports.cshtml. *@
+
+@{
+    var containerDivClass = "container"; // "container-fluid" can be used for full width
+}
+@{
+    /*
+    ViewBag and ViewData are the same collection (dictionary).
+    They carry extra data other than the model from a controller action to its view, or between views.
+    The value assigned will be shown in Views\Shared\_Layout.cshtml view's title tag of the head tag.
+    */
+    ViewData["Title"] = "Director Details";
+}
+
+<div class="@containerDivClass">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+</div>
+
+@if (Model is not null)
+{
+<div class="@containerDivClass">
+    @if (TempData["Message"] is not null)
+    {
+    /*
+    TempData is used to carry extra data to the redirected controller action's view.
+    */
+    <p class="text-danger">
+        @TempData["Message"]
+    </p>
+    }
+    <div class="row mb-3">
+        <div class="col-2 fw-bold">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </div>
+        <div class="col-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-2 fw-bold">
+            @Html.DisplayNameFor(model => model.LastName)
+        </div>
+        <div class="col-10">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-2 fw-bold">
+            @Html.DisplayNameFor(model => model.IsRetired)
+        </div>
+        <div class="col-10">
+            @Html.DisplayFor(model => model.IsRetired)
+        </div>
+    </div>
+        <div class="row mb-3">
+            <div class="col-2 fw-bold">
+                @Html.Label("MovieCount", "Movie Count")
+        </div>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.MoviesR.Count)
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2 fw-bold">
+                @Html.Label("Movies", "Movies")
+        </div>
+            <div class="col-10">
+                @{
+                    var movieNames = "";
+                    if (Model.MoviesR.Count > 0)
+                    {
+                        foreach (var movie in Model.MoviesR)
+                        {
+                            movieNames += movie.Name + ", ";
+                        }
+                        movieNames = movieNames.Substring(0, movieNames.Length - 2);
+                    }
+                }
+                @movieNames
+            </div>
+        </div>
+
+    <hr /> 
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>&nbsp;|&nbsp;
+    <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>&nbsp;|&nbsp;
+    <a asp-action="Index">Back to List</a>
+</div>
+}

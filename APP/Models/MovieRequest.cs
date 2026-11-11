@@ -16,9 +16,15 @@ namespace APP.Models
         [DisplayName("Movie Name")]
         public string Name { get; set; }
 
+        // ReleaseDate is optional (DateTime? in the entity), so no Required.
+        [DisplayName("Release Date")]
         public DateTime? ReleaseDate { get; set; }
 
+        // decimal changed to decimal? to be able to use [Required], like Score in
+        // UserRequest. Revenue can't be negative.
         [Required(ErrorMessage = "{0} is required!")]
+        [Range(0, 10000000000, ErrorMessage = "{0} must be 0 or more!")]
+        [DisplayName("Total Revenue")]
         public decimal? TotalRevenue { get; set; }
 
         [Required(ErrorMessage = "{0} is required!")]

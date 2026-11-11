@@ -69,6 +69,7 @@ namespace APP.Services
                 FirstName = d.FirstName,
                 LastName = d.LastName,
                 IsRetired = d.IsRetired,
+                FullNameR = d.FirstName + " " + d.LastName,
                 MoviesR = d.Movies.Select(m => new MovieResponse
                 {
                     Id = m.Id,

@@ -1,4 +1,7 @@
 using APP.Domain;
+using APP.Models;
+using APP.Services;
+using CORE.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContext, Db>(
     options => options.UseSqlite(
 builder.Configuration.GetConnectionString(nameof(Db))));
+builder.Services.AddScoped<IService<GenreRequest, GenreResponse>, GenreService>();
+builder.Services.AddScoped<IService<MovieRequest, MovieResponse>, MovieService>();
+builder.Services.AddScoped<IService<DirectorRequest, DirectorResponse>, DirectorService>();
 // nameof(Db) = "Db" which is the class name.
 
 // Add services to the container.

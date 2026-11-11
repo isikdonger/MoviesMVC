@@ -18,6 +18,10 @@ namespace APP.Models
 
         public bool IsRetired { get; set; }
 
+        // FirstName + " " + LastName concatenated value.
+        [DisplayName("Full Name")]
+        public string FullNameR { get; set; }
+
         [DisplayName("Movies")]
         public List<MovieResponse> MoviesR { get; set; }
     }
